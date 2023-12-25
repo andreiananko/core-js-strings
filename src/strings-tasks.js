@@ -20,7 +20,7 @@
  *   getStringLength(undefined) => 0
  */
 function getStringLength(value) {
-  return value.length;
+  return typeof value === 'string' ? value.length : 0;
 }
 
 /**
@@ -69,7 +69,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return value[0];
+  return value === '' ? '' : value[0];
 }
 
 /**
@@ -99,7 +99,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(value) {
-  return value.replace(/^\s+/,'');
+  return value.replace(/^\s+/, '');
 }
 
 /**
@@ -114,7 +114,7 @@ function removeLeadingWhitespaces(value) {
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
 function removeTrailingWhitespaces(value) {
-  return value.replace(/\s+$/,'');
+  return value.replace(/\s+$/, '');
 }
 
 /**
@@ -131,7 +131,7 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
-  return str.repeat(times);
+  return str === '' || times <= 0 ? '' : str.repeat(times);
 }
 
 /**
@@ -226,10 +226,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  return `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
     2,
     '0'
-    )}`;
+  )}`;
 }
 
 /**
@@ -443,7 +443,7 @@ function extractEmails(str) {
  */
 function encodeToRot13(str) {
   return str.replace(/[a-z]/g, (x) =>
-  String.fromCharCode(x.charCodeAt(0) + 13)
+    String.fromCharCode(x.charCodeAt(0) + 13)
   );
 }
 
